@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>your scent 🌹💎</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(145deg, #ffffff 0%, #f9e6ff 100%);
+            color: #506a94;
+        }
+
+        /* Navigation */
+        nav {
+            background: #7a6c85;
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        nav a {
+            color: #ffdead;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: #ffb86b;
+            border-bottom: 2px solid #f5b342;
+        }
+
+        /* Header / Hero */
+        header {
+            text-align: center;
+            padding: 4rem 1.5rem;
+            background: linear-gradient(135deg, #955d63, #9e6091);
+            color: white;
+            animation: fadeIn 1.5s ease;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            text-shadow: 3px 3px 0 #3a0b5e;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            margin-top: 0.6rem;
+            font-style: italic;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Homepage specific hero banner */
+        .hero-banner {
+            background: url('https://images.pexels.com/photos/965992/pexels-photo-965992.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') center/cover no-repeat;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-radius: 0 0 50px 50px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(106, 13, 173, 0.4);
+            border-radius: 0 0 50px 50px;
+        }
+
+        .hero-text {
+            position: relative;
+            color: white;
+            text-align: center;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .hero-text h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0 #3a0b5e;
+        }
+
+        .hero-text p {
+            font-size: 1.4rem;
+            max-width: 600px;
+        }
+
+        /* Sections */
+        section {
+            padding: 2.5rem 1.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.4rem;
+            margin-bottom: 2.2rem;
+            color: #e1adcd;
+            border-bottom: 4px dotted #c28ef0;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Featured perfume cards */
+        .featured-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2.5rem 0;
+        }
+
+        .perfume-card {
+            background: rgba(229, 183, 237, 0.349);
+            backdrop-filter: blur(4px);
+            border-radius: 30px;
+            padding: 1.8rem 1.2rem;
+            flex: 1 1 240px;
+            max-width: 280px;
+            box-shadow: 0 20px 30px -8px rgba(106, 13, 173, 0.3);
+            border: 2px solid #f5d7b3;
+            transition: 0.2s;
+        }
+
+        .perfume-card:hover {
+            background: white;
+            border-color: #c28ef0;
+            transform: scale(1.02);
+        }
+
+        .perfume-card h3 {
+            color: #5a2a8c;
+            font-size: 1.6rem;
+            border-left: 8px solid #f7b731;
+            padding-left: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .perfume-card .brand {
+            font-weight: 700;
+            color: #b453b4;
+            margin: 0.5rem 0;
+        }
+
+        .perfume-card .notes {
+            background: #f2e4fa;
+            border-radius: 24px;
+            padding: 0.8rem;
+            font-size: 0.95rem;
+            margin: 1rem 0;
+        }
+
+        .perfume-card p {
+            line-height: 1.5;
+        }
+
+        /* Vanilla box */
+        .vanilla-box {
+            background: rgb(231, 176, 232);
+            padding: 2.5rem;
+            max-width: 950px;
+            margin: 2rem auto;
+            border-radius: 50px;
+            box-shadow: 0 20px 30px rgba(169, 109, 209, 0.2);
+            border: 2px solid #ffcf9a;
+        }
+
+        .vanilla-box h2 {
+            color: #4a1d6d;
+            font-size: 2.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .vanilla-box p {
+            font-size: 1.1rem;
+            margin: 1rem 0;
+        }
+
+        /* Gallery grid - FIXED for visibility */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: 0 12px 22px rgba(106, 13, 173, 0.25);
+            transition: 0.3s ease;
+            border: 3px solid transparent;
+            background: #f1f6f7; /* fallback while loading */
+        }
+
+        .gallery img:hover {
+            transform: scale(1.06);
+            border-color: #f7b731;
+            box-shadow: 0 18px 28px #bf7cf2;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background:#f4bddf;
+            color: #ffeac2;
+            margin-top: 3rem;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* home button active style */
+        .active-home {
+            border-bottom: 3px solid #ffb347;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#home" class="active-home">🏠 Home</a>
+    <a href="#about">🥀Vanilla stories</a>
+    <a href="#featured">✨ Featured perfumes</a>
+    <a href="#gallery">🖼️ Gallery</a>
+    <a href="#coffee-bvlgari">🖤 Coffee & luxury</a>
+</nav>
+
+<!-- ===== HOME SECTION with hero banner ===== -->
+<section id="home" style="padding-top: 0;">
+    <div class="hero-banner">
+        <div class="hero-text">
+            <h2>Welcome to the World of Vanilla</h2>
+            <p>Discover the warmth of vanilla, the intensity of coffee, and the elegance of Bvlgari & Gucci</p>
+        </div>
+    </div>
+    <div style="text-align: center; padding: 2rem 1rem; max-width: 900px; margin: 0 auto;">
+        <h2 style="color: #4a1d6d; font-size: 2.2rem;">Your fragrance journey starts here</h2>
+        <p style="font-size: 1.2rem; margin-top: 1rem;">Explore iconic perfumes – from Kayali Vanilla 28 to Burberry Goddess. We've gathered the most beloved vanilla-based scents and beyond, with detailed notes and a rich gallery.</p>
+    </div>
+</section>
+
+<!-- ===== VANILLA DEEP DIVE ===== -->
+<section id="about">
+    <div class="vanilla-box">
+        <h2>🌿 Why vanilla is the queen of perfumery</h2>
+        <p>Vanilla acts as a warm, creamy fixative that makes other notes last longer. It blends with almost everything: <strong>citrus (top)</strong>, <strong>florals & caramel (heart)</strong>, <strong>amber, musk & woods (base)</strong>. The result? Iconic fragrances like <strong>Kayali Vanilla 28</strong> (brown sugar, vanilla orchid, amber) or <strong>Burberry Goddess</strong> (vanilla, lavender, cacao).</p>
+        <p>Below you'll find real perfumes that match the images you discovered – each with its own character.</p>
+    </div>
+</section>
+
+<!-- ===== FEATURED PERFUMES ===== -->
+<section id="featured">
+    <h2 class="section-title">🧴 Featured Perfumes from Our Gallery</h2>
+    <div class="featured-grid">
+        <!-- Victoria -->
+        <div class="perfume-card">
+            <h3>🌸 Victoria</h3>
+            <div class="brand">Victoria Collection</div>
+            <div class="notes"><strong>notes:</strong> floral, vanilla, musk</div>
+            <p>Classic feminine scent with a soft, delicate vanilla heart.</p>
+        </div>
+        <!-- Tomford -->
+        <div class="perfume-card">
+            <h3>💎 Tomford</h3>
+            <div class="brand">Tomford</div>
+            <div class="notes"><strong>notes:</strong> vanilla, amber, woods</div>
+            <p>Luxurious and elegant. Rich vanilla with warm oriental undertones.</p>
+        </div>
+        <!-- Bare -->
+        <div class="perfume-card">
+            <h3>🍃 Bare</h3>
+            <div class="brand">Bare</div>
+            <div class="notes"><strong>notes:</strong> soft vanilla, white musk, citrus</div>
+            <p>Minimalist and clean – perfect for daily wear with a touch of sweetness.</p>
+        </div>
+        <!-- Barrakat -->
+        <div class="perfume-card">
+            <h3>🖤 Barrakat</h3>
+            <div class="brand">Barrakat</div>
+            <div class="notes"><strong>notes:</strong> oud, vanilla, amber</div>
+            <p>Deep and mysterious. A warm, intense vanilla blend with exotic richness.</p>
+        </div>
+        <!-- Coffee Lucky -->
+        <div class="perfume-card">
+            <h3>☕ Coffee Lucky</h3>
+            <div class="brand">Coffee Collection</div>
+            <div class="notes"><strong>notes:</strong> coffee, vanilla, caramel</div>
+            <p>Sweet coffee mixed with creamy vanilla – cozy and energizing.</p>
+        </div>
+        <!-- Kayli -->
+        <div class="perfume-card">
+            <h3>🌺 Kayli</h3>
+            <div class="brand">Kayali</div>
+            <div class="notes"><strong>notes:</strong> vanilla, amber, floral</div>
+            <p>Soft, luxurious vanilla with a subtle floral accent. Elegant and modern.</p>
+        </div>
+        <!-- Vanilla / Vanillas -->
+        <div class="perfume-card">
+            <h3>🍯 Vanilla</h3>
+            <div class="brand">Vanilla Collection</div>
+            <div class="notes"><strong>notes:</strong> pure vanilla, musk, caramel</div>
+            <p>Classic, warm, and comforting. A true gourmand vanilla fragrance.</p>
+        </div>
+        <!-- Coffee Collection Macha -->
+        <div class="perfume-card">
+            <h3>🤎 Coffee Collection Macha</h3>
+            <div class="brand">Coffee Collection</div>
+            <div class="notes"><strong>notes:</strong> matcha, coffee, vanilla</div>
+            <p>Unique green matcha blended with coffee and sweet vanilla – fresh and cozy.</p>
+        </div>
+        <!-- Oud -->
+        <div class="perfume-card">
+            <h3>🏜️ Oud</h3>
+            <div class="brand">Oud Selection</div>
+            <div class="notes"><strong>notes:</strong> oud, vanilla, amber</div>
+            <p>Powerful and deep. Exotic oud with soft vanilla for balance.</p>
+        </div>
+        <!-- Tease -->
+        <div class="perfume-card">
+            <h3>🎀 Tease</h3>
+            <div class="brand">Tease Collection</div>
+            <div class="notes"><strong>notes:</strong> floral, vanilla, musk</div>
+            <p>Playful and lighthearted vanilla fragrance with delicate floral undertones.</p>
+        </div>
+    </div>
+</section>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfume Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdf6f0;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #9a6658;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .item {
+      border: 1px solid #1c1111;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 200px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .caption {
+      background-color: #e9bdef;
+      padding: 10px;
+      font-weight: bold;
+      color: #3e2b2b3e;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Perfume Gallery</h1>
+  <div class="gallery">
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\223.jfif" alt="Victoria"><div class="caption">Victoria</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (1).jfif" alt="Tomford"><div class="caption">Tomford</div></div>
+    <div class="item"><img src= "C:\Users\Hello\Desktop\img..jfif\img1 (2).jfif"alt="Bare"><div class="caption">Bare</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (3).jfif" alt="Victoria"><div class="caption">Victoria</div></div>
+    <div class="item"><img src= "C:\Users\Hello\Desktop\img..jfif\img1 (4).jfif"alt="Vanilla Victoria"><div class="caption">Vanilla Victoria</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (3).jfif" alt="Victoria Seduction"><div class="caption">Victoria Seduction</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (5).jfif"alt="Barrakat"><div class="caption">Barrakat</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (6).jfif" alt="Barrakat"><div class="caption">Barrakat</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (7).jfif" alt="Barrakat"><div class="caption">Barrakat</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (8).jfif" alt="You"><div class="caption">You</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (10).jfif" alt="Prada"><div class="caption">Prada</div></div>
+    <div class="item"><img src= "C:\Users\Hello\Desktop\img..jfif\img1 (11).jfif"alt="Hill"><div class="caption">Hill</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (12).jfif" alt="Good Boy"><div class="caption">Good Boy</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (13).jfif" alt="Vanilla"><div class="caption">Vanilla</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (14).jfif" alt="CK"><div class="caption">CK</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (15).jfif" alt="Boy Smell"><div class="caption">Boy Smell</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (16).jfif" alt="Chance Chanel"><div class="caption">Chance Chanel</div></div>
+    <div class="item"><img src=  "C:\Users\Hello\Desktop\img..jfif\img1 (17).jfif"alt="Gucci"><div class="caption">Gucci</div></div>
+    <div class="item"><img src= "C:\Users\Hello\Desktop\img..jfif\img1 (18).jfif"alt="Vanilla"><div class="caption">Vanilla</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (19).jfif" alt="Tomford"><div class="caption">Tomford</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (20).jfif"alt="Flow"><div class="caption">Flow</div></div>
+    <div class="item"><img src= "C:\Users\Hello\Desktop\img..jfif\img1 (21).jfif"alt="Blanche"><div class="caption">Blanche</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (22).jfif" alt="Blance"><div class="caption">Blance</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (23).jfif" alt="Chanel"><div class="caption">Chanel</div></div>
+    <div class="item"><img src= "C:\Users\Hello\Desktop\img..jfif\img1 (24).jfif"alt="Chanel"><div class="caption">Chanel</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (25).jfif" alt="Persin"><div class="caption">Persin</div></div>
+    <div class="item"><img src= "C:\Users\Hello\Desktop\img..jfif\img1 (26).jfif"alt="Coffee"><div class="caption">Coffee</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (27).jfif"alt="Coffee"><div class="caption">Coffee</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (28).jfif" alt="Coffee Lucky"><div class="caption">Coffee Lucky</div></div>
+    <div class="item"><img src= "C:\Users\Hello\Desktop\img..jfif\img1 (29).jfif"alt="Coffee Collection Macha"><div class="caption">Coffee Collection Macha</div></div>
+    <div class="item"><img src= "C:\Users\Hello\Desktop\img..jfif\img1 (30).jfif"alt="Seduction"><div class="caption">Seduction</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (31).jfif" alt="Oud"><div class="caption">Oud</div></div>
+    <div class="item"><img src=  "C:\Users\Hello\Desktop\img..jfif\img1 (32).jfif"alt="Barakkat"><div class="caption">Barakkat</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (33).jfif"alt="Kayli"><div class="caption">Kayli</div></div>
+    <div class="item"><img src=  "C:\Users\Hello\Desktop\img..jfif\img1 (34).jfif"  alt="Vanillas"><div class="caption">Vanillas</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (35).jfif" alt="Chanel"><div class="caption">Chanel</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (36).jfif" alt="Victorias"><div class="caption">Victorias</div></div>
+    <div class="item"><img src="C:\Users\Hello\Desktop\img..jfif\img1 (37).jfif" alt="Tease"><div class="caption">Tease</div></div>
+  </div>
+</body>
+</html>
+
+
+
+<div class="gallery" id="gallery"></div>
+
+<script>
+
+    const imageFiles = [
+ 
+
+
+    ];
+
+    const gallery = document.getElementById("gallery");
+
+    imageFiles.forEach(file => {
+        const img = document.createElement("img");
+        img.src = file;
+        img.alt = "Perfume";
+        gallery.appendChild(img);
+    });
+</script>
+
+
+           
+        </script>
+    </div>
+    <p style="text-align: center; margin-top: 2rem; color: #6b2e9b;">✨ each image captures a different facet – from vanilla beans to luxury bottles ✨</p>
+</section>
+
+<!-- ===== COFFEE / BVLGARI / GUCCI SECTION ===== -->
+<section id="coffee-bvlgari" style="background: #faf0fa; border-radius: 60px; margin: 2rem auto; padding: 2rem; max-width: 1200px;">
+    <h2 class="section-title">☕ Coffee & Luxury Perfumes</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;">
+
+        <!-- Coffee Perfumes -->
+        <div style="background: rgba(251, 208, 255, 0.726); border-radius: 30px; padding: 1.5rem; max-width: 260px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+            <h3 style="color:#6b3f9b; margin-bottom: 0.8rem;">☕ Coffee Series</h3>
+            <p>
+                <strong>Coffee Lucky</strong> – coffee, vanilla, caramel<br>
+                <strong>Coffee Collection Macha</strong> – matcha, coffee, vanilla<br>
+                <strong>Coffee</strong> – pure coffee essence, soft vanilla<br>
+            </p>
+        </div>
+
+        <!-- Luxury / Designer Perfumes -->
+        <div style="background: rgb(248, 202, 241); border-radius: 30px; padding: 1.5rem; max-width: 260px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+            <h3 style="color:#6b3f9b; margin-bottom: 0.8rem;">💎 Designer & Luxury</h3>
+            <p>
+                <strong>Victoria</strong> – floral, vanilla, musk<br>
+                <strong>Victoria Seduction</strong> – vanilla, rose, woods<br>
+                <strong>Tomford</strong> – vanilla, amber, woods<br>
+                <strong>Barrakat</strong> – oud, vanilla, amber<br>
+                <strong>Kayli</strong> – vanilla, amber, floral<br>
+                <strong>Vanilla / Vanillas</strong> – pure vanilla, caramel, musk<br>
+                <strong>Tease</strong> – playful vanilla, soft florals<br>
+        </div>
+
+        <!-- High-End Signature Picks -->
+        <div style="background: rgb(232, 190, 232); border-radius: 30px; padding: 1.5rem; max-width: 260px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+            <h3 style="color:#6b3f9b; margin-bottom: 0.8rem;">👑 High-End Picks</h3>
+            <p>
+                <strong>Prada</strong> – vanilla, sandalwood, soft amber<br>
+                <strong>CK</strong> – fresh vanilla, musk, citrus<br>
+                <strong>Chance Chanel</strong> – vanilla, floral, woody<br>
+                <strong>Gucci</strong> – floral vanilla, amber, musk<br>
+                <strong>Oud</strong> – oud, vanilla, amber<br>
+                <strong>Blanche / Blance</strong> – soft vanilla, floral notes<br>
+            </p>
+        </div>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem; background: #fff0db; border-radius: 40px; padding: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+        <p style="font-size: 1.1rem;">✨ Every perfume and coffee-inspired fragrance matches the images in the gallery above, capturing luxury, elegance, and cozy vanilla vibes ✨</p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 your scent 🌹💎 – </p>
+    <p style="margin-top: 0.7rem;">🖤 coffee & luxury corner •</p>
+</footer>
+
+</body>
+</html>
